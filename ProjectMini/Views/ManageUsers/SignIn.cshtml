@@ -1,0 +1,59 @@
+﻿@model ProjectMini.Models.LoginVM
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <title>SignIn</title>
+</head>
+<body class="d-flex align-items-center">
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow border-0" style="background-color:ghostwhite">
+                    <div class="card-body p-5">
+                        <h2 class="text-center mb-4 text-primary" style="font-family:fangsong;font-size:40px">Sign In</h2>
+                        <div>
+                            @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "p-3" }))
+                            {
+                                <div class="text-danger">
+                                    @Html.ValidationSummary(true)
+                                </div>
+                                <div class="form-group mb-3">
+                                    @Html.LabelFor(p => p.EmailId, new { @class = "form-label" })
+                                    @Html.EditorFor(p => p.EmailId, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Email Id" } })
+                                    @Html.ValidationMessageFor(p => p.EmailId,null, new {@class="text-danger"})
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    @Html.LabelFor(p => p.Password, new { @class = "form-label" })
+                                    @Html.EditorFor(p => p.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter password" } })
+                                    @Html.ValidationMessageFor(p => p.Password, null, new { @class = "text-danger" })
+                                </div>
+                                <div class="text-center">
+                                    <input type="submit" value="SignIn" class="btn btn-success px-4" />
+                                </div>
+                            }
+
+                            <div class="text-center">
+                                <hr />
+                                @Html.ActionLink("New User Register", "SignUp", "ManageUsers",null, new {@class="text-decoration-none"})
+                                <hr />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

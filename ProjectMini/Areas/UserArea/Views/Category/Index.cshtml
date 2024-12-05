@@ -1,0 +1,41 @@
+﻿@model IEnumerable<ProjectMini.Models.Category>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="text-center mt-4">Categories</h2>
+
+<div>
+    <div>
+        <hr />
+        <p>@Html.ActionLink("Create New", "Create", null, new {@class = "btn btn-success"})</p>
+        <hr />
+    </div>
+    
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped table-hover text-center">
+            <thead class="bg-dark text-white">
+                <tr>
+                    <th>@Html.DisplayNameFor(p => p.CategoryId)</th>
+                    <th>@Html.DisplayNameFor(p => p.MainCategory.MainCategoryName)</th>
+                    <th>@Html.DisplayNameFor(p => p.CategoryName)</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            @foreach (var temp in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(p => temp.CategoryId)</td>
+                    <td>@Html.DisplayFor(p => temp.MainCategory.MainCategoryName)</td>
+                    <td>@Html.DisplayFor(p => temp.CategoryName)</td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = temp.CategoryId }, new {@class= "btn btn-info mr-2"})
+                        @Html.ActionLink("Delete", "Delete", new { id = temp.CategoryId }, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+

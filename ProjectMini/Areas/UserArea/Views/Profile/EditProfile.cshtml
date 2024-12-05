@@ -1,0 +1,59 @@
+﻿@model ProjectMini.Models.User
+@{
+    ViewBag.Title = "EditProfile";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h3 class="text-center mb-4">Edit Profile: @Session["UserName"]</h3>
+            @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "p-3" }))
+            {
+                @Html.HiddenFor(p => p.UserId)
+
+                <div class="mb-3 row">
+                    <label class="col-md-3 col-form-label">@Html.LabelFor(p => p.FirstName)</label>
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(p => p.FirstName, new { @class = "form-control", @readonly = "readonly" })
+                        @Html.HiddenFor(p => p.FirstName)
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label class="col-md-3 col-form-label">@Html.LabelFor(p => p.LastName)</label>
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(p => p.LastName, new { @class = "form-control", @readonly = "readonly" })
+                        @Html.HiddenFor(p => p.LastName)
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label class="col-md-3 col-form-label">@Html.LabelFor(p => p.Address)</label>
+                    <div class="col-md-9">
+                        @Html.TextAreaFor(p => p.Address, new { @class = "form-control", rows = 3 })
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label class="col-md-3 col-form-label">@Html.LabelFor(p => p.MobileNo)</label>
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(p => p.MobileNo, new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label class="col-md-3 col-form-label">@Html.LabelFor(p => p.EmailId)</label>
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(p => p.EmailId, new { @class = "form-control" })
+                    </div>
+                </div>
+
+                @Html.HiddenFor(p => p.Password)
+
+                <div class="text-center">
+                    <input type="submit" value="Update Profile" class="btn btn-primary px-4" />
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,61 @@
+﻿@model ProjectMini.Models.User
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 card" style="font-family: FangSong;">
+            <div class="card-header text-center p-3 bg-light">
+                <h2>Profile: <span class="text-success">@Session["UserName"]</</span> </h2>
+            </div>
+            <div class="card-body p-5" style="font-size:18px;background-color:ghostwhite">
+                <div class="row p-2">
+                    <div class="col-md-4 text-primary text-center">
+                        @Html.LabelFor(p => p.FirstName)
+                    </div>
+                    <div class="col-md-8 text-success fw-bolder">
+                        @Html.DisplayFor(p => p.FirstName)
+                    </div>
+                </div>
+                <div class="row p-2">
+                    <div class="col-md-4 text-primary text-center">
+                        @Html.LabelFor(p => p.LastName)
+                    </div>
+                    <div class="col-md-8 text-success fw-bolder">
+                        @Html.DisplayFor(p => p.LastName)
+                    </div>
+                </div>
+                <div class="row p-2">
+                    <div class="col-md-4 text-primary text-center">
+                        @Html.LabelFor(p => p.Address)
+                    </div>
+                    <div class="col-md-8 text-success fw-bolder">
+                        @Html.DisplayFor(p => p.Address)
+                    </div>
+                </div>
+                  <div class="row p-2">
+                      <div class="col-md-4 text-primary text-center">
+                          @Html.LabelFor(p => p.MobileNo)
+                      </div>
+                      <div class="col-md-8 text-success fw-bolder">
+                          @Html.DisplayFor(p => p.MobileNo)
+                      </div>
+                  </div>
+                   <div class="row p-2">
+                       <div class="col-md-4 text-primary text-center">
+                           @Html.LabelFor(p => p.EmailId)
+                       </div>
+                       <div class="col-md-8 text-success fw-bolder">
+                           @Html.DisplayFor(p => p.EmailId)
+                       </div>
+                   </div>
+            </div>
+
+            <div class="card-footer text-center p-3 bg-light">
+                @Html.ActionLink("Edit Profile", "EditProfile", null, new { style = "padding: 10px 15px; text-decoration: none; border-radius: 5px;background-color: #333; color: white" })
+            </div>
+        </div>
+    </div>
+</div>
+

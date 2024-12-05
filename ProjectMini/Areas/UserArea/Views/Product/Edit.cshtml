@@ -1,0 +1,56 @@
+﻿@model ProjectMini.Models.Product
+@{
+    ViewBag.Title = "Edit";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h2 class="text-center mb-3">Edit Product Detail</h2>
+
+            <div>
+                @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "p-3" }))
+                {
+                    <div>
+                        @Html.HiddenFor(p => p.ProductId)
+                    </div>
+                    <div class="form-group mb-3">
+                        @Html.LabelFor(P => P.ProductName, new { @class = "form-label" })
+                        @Html.EditorFor(p => p.ProductName, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Product Name" } })
+                    </div>
+
+                    <div class="form-group mb-3">
+                        @Html.LabelFor(p => p.Mfg.MfgName, new { @class = "form-label" })
+                        @Html.DropDownList("MfgId", null, null, new { @class = "form-select" })
+                    </div>
+
+                    <div class="form-group mb-3">
+                        @Html.LabelFor(P => P.ProductDesc, new { @class = "form-label" })
+                        @Html.EditorFor(p => p.ProductDesc, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Product Desc" } })
+                    </div>
+
+                    <div class="form-group mb-3">
+                        @Html.LabelFor(p => p.Category.CategoryName, new { @class = "form-label" })
+                        @Html.DropDownList("CategoryId", null, null, new { @class = "form-select" })
+                    </div>
+
+                    <div class="form-group mb-3">
+                        @Html.LabelFor(p => p.Price, new { @class = "form-label" })
+                        @Html.EditorFor(p => p.Price, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Price" } })
+                    </div>
+
+                    <div class="text-center">
+                        <input type="submit" value="update" class="btn btn-primary" px-4 />
+                    </div>
+
+                    <div class="text-center" style="font-size:18px">
+                        <hr />
+                        @Html.ActionLink("Back to list", "Index", null, new { @class = "text-decoration-none" })
+                        <hr />
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

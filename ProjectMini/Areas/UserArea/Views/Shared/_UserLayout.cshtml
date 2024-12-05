@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <script src="~/Scripts/jquery-3.7.0.js"></script>
+    <title>@ViewBag.Title</title>
+    <style>
+        .contentadjust {
+            padding-top: 140px;
+        }
+    </style>
+
+</head>
+<body style="font-family:fangSong">
+    <div class="fixed-top">
+        <header>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="d-flex align-items-center justify-content-between text-white p-2" style="background-color: #333;">
+                            <img class="img-fluid" style="width:80px" src="~/Content/missMinute.jpg" />
+                            <h2>My Project</h2>
+                            <p>Hello! @Session["UserName"]</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="d-flex justify-content-around p-3 bg-light">
+                        @Html.ActionLink("Home", "Index", "HomeUser", null, new { @class = "btn text-dark", style = "background-color:#f7931e" })
+                        @Html.ActionLink("MainCategory", "Index", "MainCategory", null, new { @class = "btn text-dark", style = "background-color:#f7931e" })
+                        @Html.ActionLink("Category", "Index", "Category", null, new { @class = "btn text-dark", style = "background-color:#f7931e" })
+                        @Html.ActionLink("Product", "Index", "Product", null, new { @class = "btn text-dark", style = "background-color:#f7931e" })
+                        @Html.ActionLink("Change Password", "ChangePassword", "Profile", null, new { @class = "btn text-dark", style = "background-color:#f7931e" })
+                        @Html.ActionLink("Edit Profile", "Index", "Profile", null, new { @class = "btn text-dark", style = "background-color:#f7931e" })
+                        @Html.ActionLink("Log Out", "SignOut", "ManageUsers", new { area = "" }, new { @class = "btn text-dark", style = "background-color:#f7931e" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container contentadjust mt-5">
+        <div class="row">
+            <div class="col-md-12">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="bg-dark mt-4 text-white text-center p-1 border-top border-secondary align-items-center">
+                    <p>&copy;All rights Reserved to Continental.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

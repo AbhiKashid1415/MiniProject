@@ -1,0 +1,101 @@
+﻿@model IEnumerable<ProjectMini.Models.Product>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="text-center mt-4">Product Details</h2>
+
+<div>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+                    @using (Html.BeginForm("SearchByCategory", "Product", FormMethod.Post))
+                    {
+                        <div class="row align-items-center">
+                            <div class="col-auto col-md-4">
+                                @Html.Label("MainCategoryId", "Main Category:", new { @class = "form-label" })
+                                @Html.DropDownList("MainCategoryId", null, "Select MainCategory", new { @class = "form-select" , id="MainCategoryId"})
+                            </div>
+                            <div class="col-auto col-md-4">
+                                @Html.Label("CategoryId", "Category:", new { @class = "form-label" })
+                                @Html.DropDownList("CategoryId", null, "Select Category", new { @class = "form-select", id="CategoryId" })
+                            </div>
+                            <div class="col-auto col-md-3 ">
+                                <input type="submit" value="Search" class="btn btn-primary mt-4" />
+                            </div>
+                        </div>
+                    }
+                
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <hr />
+        @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success" })
+        <hr />
+    </div>
+
+    <div class="container mt-4">
+        <table class="table table-bordered table-striped table-hover text-center">
+            <thead class="bg-dark text-white">
+                <tr>
+                    <th>@Html.DisplayNameFor(p => p.ProductId)</th>
+                    <th>@Html.DisplayNameFor(p => p.ProductName)</th>
+                    <th>@Html.DisplayNameFor(p => p.Mfg.MfgName)</th>
+                    <th>@Html.DisplayNameFor(p => p.ProductDesc)</th>
+                    <th>@Html.DisplayNameFor(p => p.Category.CategoryName)</th>
+                    <th>@Html.DisplayNameFor(p => p.Price)</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            @foreach (var temp in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(p => temp.ProductId)</td>
+                    <td>@Html.DisplayFor(p => temp.ProductName)</td>
+                    <td>@Html.DisplayFor(p => temp.Mfg.MfgName)</td>
+                    <td>@Html.DisplayFor(p => temp.ProductDesc)</td>
+                    <td>@Html.DisplayFor(p => temp.Category.CategoryName)</td>
+                    <td>@Html.DisplayFor(p => temp.Price)</td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = temp.ProductId }, new {@class = "btn btn-info mr-2"})
+                        @Html.ActionLink("Delete", "Delete", new { id = temp.ProductId }, new {@class = "btn btn-danger"})
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $("#MainCategoryId").change(function () {
+            var macatid = $(this).val();
+
+            $.ajax({
+                url: "/UserArea/Product/GetCategories/?maincatid=" + macatid,
+                type: "GET",
+                contentType: "application/json",
+                success: function (result) {
+                    $("#CategoryId").empty();
+
+                    var str = "";
+                    for (var i = 0; i < result.length; i++) {
+                        str += "<option value='" + result[i].CategoryId + "'>" +
+                            result[i].CategoryName + "</option>";
+                    }
+
+                    $("#CategoryId").append(str);
+                },
+                error: function (err) {
+                    alert(JSON.stringify(err));
+                }
+            });
+        });
+    });
+</script>
